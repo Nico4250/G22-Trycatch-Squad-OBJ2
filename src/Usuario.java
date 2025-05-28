@@ -2,7 +2,7 @@ public class Usuario {
 
 	private int    			id;
 	private String 			nombreUsuario;
-	private EstadoUsuario 	estado;
+	private IestadoUsuario 	estado;
 	
 	public Usuario(int id, String nombreUsuario) {
 		this.id = id;
@@ -18,7 +18,5 @@ public class Usuario {
 		return nombreUsuario;
 	}
 	
-	public estadoUsuario estado() {
-		return estado;
-	}
+	
 }
