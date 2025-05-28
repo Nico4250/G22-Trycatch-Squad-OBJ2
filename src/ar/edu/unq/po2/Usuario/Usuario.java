@@ -1,3 +1,4 @@
+package ar.edu.unq.po2.Usuario;
 public class Usuario {
 
 	private int    			id;

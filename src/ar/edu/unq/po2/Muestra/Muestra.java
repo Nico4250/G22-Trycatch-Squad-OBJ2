@@ -1,4 +1,8 @@
+package ar.edu.unq.po2.Muestra;
 import java.util.ArrayList;
+
+import ar.edu.unq.po2.Organizacion.Ubicacion;
+import ar.edu.unq.po2.Usuario.Usuario;
 
 public class Muestra {
  private Ubicacion          ubicacion;
