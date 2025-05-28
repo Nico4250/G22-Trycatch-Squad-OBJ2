@@ -1,0 +1,61 @@
+MUESTRA (CLASS)
+OBJ    new() 			--> delegada??
+STRING fotoDeMuestra();
+STRING ubicacionDeMuestra();
+STRING dniRecolectorDeMuestra();
+OBJETO??    opinionActual();  	--> posible patron STATE = Vinchuca (especie) || otro bicho || ninguna || no claro
+
+USUARIO (CLASS)//(ABSTRACT SUPERCLASS??)
+VOID enviarMuestra();
+VOID opinar();
+STRING?? consultarNivel(); --> STATE/SUPERCLASS? niveles básico || experto || especialista 
+
+ORGANIZACION (CLASS)
+OBJ new(ubicacion, tipo, cantTrabajadores); //tipo = enum? string?
+getters();
+VOID registrarseA(zonaCobertura)
+VOID seValidoMuestraEn (zonaCobertura)
+VOID seRegistroMuestraEn (zonaCobertura)
+
+UBICACION (CLASS)
+OBJ new(latitud.longitud)
+ getters();
+
+ZONACOBERTURA(CLASS)
+VOID addMuestra(unaMuestra);
+     getters();
+VOID registrarOrganizacion(unaOrganizacion); //PATRON OBSERVER?
+
+
+FUNCIONALIDAD EXTERNA <INTERFAZ>
+
+
+
+WEB (CLASS)
+- guarda muestras enviadas por un usuario
+- guarda opiniones enviadas por un usuario
+- diferencia entre básicos y expertos
+
+
+-- que deben hacer o como serviran??
+
+MUESTRA
+- (Representa una imagen tomada por un usuario)
+- Conoce la especie de vinchuca fotografiada (Infestans, Sordida, Guasayana) //la muestra 
+- Conoce la foto de la vinchuca fotografiada 
+- Conoce la ubicación de la vinchuca fotografiada
+- Conoce la identificación del usuario que envió la muestra
+- Conoce el resultado actual de opiniones de usuarios (se define por mayoría de opiniones o el acuerdo de 2 expertos)
+- (Si la imagen todavía no tiene opiniones será considerada como la dicha por el usuario)
+- (Cuando hay un empate en las opiniones el resultado será "no definido")
+- (Cuando coinciden 2 expertos se cierran las opiniones y el resultado queda verificado)
+
+USUARIO
+- (Se divide en BASICO y EXPERTO)
+- Pueden enviar muestras
+- Pueden opinar sobre qué es la muestra realmente
+- (un usuario no puede opinar sobre su propia muestra)
+- (Las opiniones se dividen en:  Vinchuca (y en tal caso la especie)/Chinche Foliada/Phtia-Chinche/Ninguna/Imagen poco clara.)
+- (al opinar un usuario EXPERTO solo pueden opinar expertos)
+- (para ser EXPERTO debe haber realizado mas de 10 envios y 20 revisiones durante los últimos 30 dias)
+- (habrá un algoritmo que pasados los 30 días defina si el usuario subio o bajo en su categoria)
