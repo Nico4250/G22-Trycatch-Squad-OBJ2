@@ -1,4 +1,5 @@
 package ar.edu.unq.po2.Muestra;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import ar.edu.unq.po2.Organizacion.Ubicacion;
@@ -33,7 +34,9 @@ public class Muestra {
  }
 
  
- 
+ public OpinionImagen getTipoInsecto() {
+	 return tipoInsecto;
+ }
 	 
 	 
  
