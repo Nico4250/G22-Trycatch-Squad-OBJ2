@@ -1,6 +1,5 @@
 package ar.edu.unq.po2.BuscadorDeMuestras;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,14 +11,10 @@ private String insectoABuscar;
 
 	@Override
 	public List<Muestra> Filtrar(List<Muestra> muestrasAFiltrar) {
-		List<Muestra> resultado = new ArrayList<>();
-		
-			resultado = muestrasAFiltrar.stream()
+	    return muestrasAFiltrar.stream()
 					.filter(muestra -> muestra.getTipoInsecto().name().toLowerCase().contains(insectoABuscar.toLowerCase()))
 					.collect(Collectors.toList());
-					
-			return resultado;
-		
+							
 		
 	 }
 	

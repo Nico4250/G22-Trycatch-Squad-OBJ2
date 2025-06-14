@@ -1,7 +1,6 @@
 package ar.edu.unq.po2.BuscadorDeMuestras;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,11 +12,10 @@ public class BuscadorFechaCreacionMuestra implements iBuscadorMuestras {
  
 	@Override
 	public List<Muestra> Filtrar(List<Muestra> muestrasAFiltrar) {
-		List<Muestra> resultado = new ArrayList<>();
-		resultado = muestrasAFiltrar.stream()
+	 return	muestrasAFiltrar.stream()
 				.filter(muestra -> muestra.getFechaCreacion().isAfter(this.fecha))
 				.collect(Collectors.toList());
-		return (resultado);
+		
 	}
 	
 	public void setFecha (LocalDate fecha) {
