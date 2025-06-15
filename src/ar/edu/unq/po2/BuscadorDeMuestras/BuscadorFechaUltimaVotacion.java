@@ -1,5 +1,6 @@
 package ar.edu.unq.po2.BuscadorDeMuestras;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
