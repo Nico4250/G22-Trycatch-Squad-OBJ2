@@ -1,10 +1,28 @@
 package ar.edu.unq.po2.Organizacion;
 
 public class Organizacion {
-
+    private String nombre;
 	private Ubicacion ubicacion;
 	private TipoDeOrganizacion tipo;
-	private int cantidadPersonas;
+	private FuncionalidadExterna cargaMuestra;
+	private FuncionalidadExterna validacionMuestra;
+	
+	
+	public Organizacion(String nombre, Ubicacion ubicacion, TipoDeOrganizacion tipo, FuncionalidadExterna funcionalidadCarga, FuncionalidadExterna funcionalidadValidacion) {
+		this.nombre = nombre;
+		this.ubicacion = ubicacion;
+		this.tipo = tipo;
+		this.cargaMuestra = funcionalidadCarga;
+		this.validacionMuestra = funcionalidadValidacion;
+		
+	}
+	public String getNombre() { 
+		return nombre;
+	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 	
 	public Ubicacion getUbicacion() {
 		return ubicacion;
@@ -14,22 +32,27 @@ public class Organizacion {
 		this.ubicacion = ubicacion;
 	}
 	
-	public TipoDeOrganizacion getTipo() {
+	public TipoDeOrganizacion getTipoOrganizacion() {
 		return tipo;
 	}
 	
-	public TipoDeOrganizacion SetTipo(TipoDeOrganizacion tipo) {
+	public void setTipoOrganizacion(TipoDeOrganizacion tipo) {
 		this.tipo = tipo;
 	}
 	
-	public int getCantidadPersonas() {
-		return cantidadPersonas;
+	public FuncionalidadExterna getFuncionalidadCarga() {
+		return cargaMuestra;
 	}
 	
-	
-	public void setCantidadPersonas(int cantidadPersonas) {
-		this.cantidadPersonas = cantidadPersonas;
+	public void setFuncionalidadCarga(FuncionalidadExterna funcionalidad) {
+		this.cargaMuestra = funcionalidad;
 	}
 	
+	public FuncionalidadExterna getFuncionalidadValidacion() {
+		return validacionMuestra;
+	}
 	
+	public void setFuncionalidadValidacion(FuncionalidadExterna funcionalidad) {
+		this.validacionMuestra = funcionalidad;
+	}
 }
