@@ -19,7 +19,7 @@ public class Usuario {
 		return nombreUsuario;
 	}
 	
-	public estadoUsuario estado() {
+	public EstadoUsuario estado() {
 		return estado;
 	}
 }
