@@ -18,4 +18,9 @@ public class BuscadorFechaUltimaVotacion implements IBuscadorMuestras {
 				.collect(Collectors.toList());
 	}
 
+	public void setFecha(LocalDate fechaUltimaVotacionABuscar) {
+		this.fecha = fechaUltimaVotacionABuscar;
+		
+	}
+
 }
