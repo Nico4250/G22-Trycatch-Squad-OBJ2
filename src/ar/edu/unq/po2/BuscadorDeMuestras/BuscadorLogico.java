@@ -23,7 +23,7 @@ public abstract class BuscadorLogico implements IBuscadorMuestras {
 	}
 
 	@Override
-	public List<Muestra> Filtrar(List<Muestra> muestrasAFiltrar) {
+	public List<Muestra> filtrar(List<Muestra> muestrasAFiltrar) {
 		// TODO Auto-generated method stub
 		return null;
 	}

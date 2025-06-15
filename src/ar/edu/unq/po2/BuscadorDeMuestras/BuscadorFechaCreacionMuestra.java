@@ -11,7 +11,7 @@ public class BuscadorFechaCreacionMuestra implements IBuscadorMuestras {
  private LocalDate fecha;
  
 	@Override
-	public List<Muestra> Filtrar(List<Muestra> muestrasAFiltrar) {
+	public List<Muestra> filtrar(List<Muestra> muestrasAFiltrar) {
 	 return	muestrasAFiltrar.stream()
 				.filter(muestra -> muestra.getFechaCreacion().isAfter(this.fecha))
 				.collect(Collectors.toList());

@@ -10,7 +10,7 @@ public class BuscadorNivelVerificacion implements IBuscadorMuestras {
 	private boolean estadoMuestraABuscar;
 
 	@Override
-	public List<Muestra> Filtrar (List<Muestra> muestrasAFiltrar) {
+	public List<Muestra> filtrar (List<Muestra> muestrasAFiltrar) {
 	   return muestrasAFiltrar.stream()
 	            .filter(muestra -> muestra.getEstadoMuestra().esVerificada() == estadoMuestraABuscar)
 	            .collect(Collectors.toList());
