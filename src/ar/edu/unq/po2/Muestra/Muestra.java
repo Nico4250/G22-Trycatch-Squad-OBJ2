@@ -25,7 +25,7 @@ public class Muestra {
     	this.tipoInsecto = opinion.getOpinion();
     	this.estado = (IEstadoMuestra) new MuestraNoVerificada(this);
     	this.opiniones.add(opinion);
-    	this.fechaCreacion.now();
+    	this.fechaCreacion = LocalDate.now();
     }
     
 	
