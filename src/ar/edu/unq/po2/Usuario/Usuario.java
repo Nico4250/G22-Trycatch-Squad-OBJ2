@@ -22,4 +22,9 @@ public class Usuario {
 	public EstadoUsuario estado() {
 		return estado;
 	}
+
+	public Object esExperto() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
