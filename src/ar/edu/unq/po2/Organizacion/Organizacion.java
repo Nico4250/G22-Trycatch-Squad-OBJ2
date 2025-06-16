@@ -1,6 +1,7 @@
 package ar.edu.unq.po2.Organizacion;
+import ar.edu.unq.po2.Muestra.*;
 
-public class Organizacion {
+public class Organizacion implements IObserver {
     private String nombre;
 	private Ubicacion ubicacion;
 	private TipoDeOrganizacion tipo;
@@ -54,5 +55,15 @@ public class Organizacion {
 	
 	public void setFuncionalidadValidacion(FuncionalidadExterna funcionalidad) {
 		this.validacionMuestra = funcionalidad;
+	}
+	
+	@Override
+	public void actualizarPorCargaNueva(ZonaDeCobertura zonaDeCobertura, Muestra muestra) {
+		this.getFuncionalidadCarga().nuevoEvento(this, zonaDeCobertura, muestra);
+	}
+ 
+	@Override
+	public void actualizarPorValidacion(ZonaDeCobertura zonaDeCobertura, Muestra muestra) {
+		this.getFuncionalidadValidacion().nuevoEvento(this, zonaDeCobertura, muestra);
 	}
 }
