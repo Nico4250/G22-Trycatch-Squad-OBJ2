@@ -38,6 +38,7 @@ public List<Ubicacion> ubicacionesAMenosDe(List<Ubicacion> ubicaciones, int dist
 	
 public List<Muestra> muestrasAMenosDe(Muestra muestra, int distancia ) {
 	// ESTO VA EN SISTEMA PORQUE NECESITAMOS LA LISTA DE MUESTRAS, NO VA EN UBICACION, lo cambio luego 
+	//revisamos si va en el calculador por si este puede hacer un sistema,getmuestra
 }
 
 

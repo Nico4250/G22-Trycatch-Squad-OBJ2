@@ -10,8 +10,8 @@ public class Opinion {
  private  LocalDate fechaPublicacion;
  private  Usuario usuario;
 		
- public Opinion(Usuario usuario) {
-			// this.opinion = opinion;
+ public Opinion(Usuario usuario, OpinionImagen opinion) {
+		        // this.opinion = opinion;
 		LocalDate.now();
 		this.usuario = usuario;
 		}
@@ -25,11 +25,11 @@ public class Opinion {
 		return opinion;
 		}
 
- public void setOpinion(OpinionImagen opinion) {
+public void setOpinion(OpinionImagen opinion) {
 		this.opinion = opinion;
 		}
 
- public void setFechaPublicacion(LocalDate fechaPublicacion) {
+public void setFechaPublicacion(LocalDate fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
 		}
 		
