@@ -13,7 +13,7 @@ public class MuestraNoVerificada implements IEstadoMuestra{
 	}
 
 	public void agregarOpinion(Opinion opinion) {
-		this.muestra.agregarOpinion(opinion);
+		this.muestra.agregarOpinionDe(opinion);
 		this.muestra.actualizarOpinion();
 	}
 

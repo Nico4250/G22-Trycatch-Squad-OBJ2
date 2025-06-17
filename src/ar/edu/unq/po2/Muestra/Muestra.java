@@ -69,9 +69,10 @@ public class Muestra {
 		return opinionLista.toList().get(0);
 	}
 	
+	
+	
 	public Boolean elUsuarioNoOpino(Usuario usuario) {
-		Stream<Opinion> opinionLista = this.getOpiniones().stream().filter(opinion -> opinion.getUsuario().getId() == usuario.getId());
-		return opinionLista.toList().size() == 0;
+		return this.getOpiniones().stream().noneMatch(opinion -> opinion.getUsuario().getId() == usuario.getId());
 	}
 
 
@@ -136,9 +137,15 @@ public class Muestra {
     	}
     }
 
-
+//ESTE METODO SOBRA? ES IGUAL AL PRIMERO PERO SIN COMPROBACION
 	public void agregarOpinionDe(Opinion opinion) {
 		this.opiniones.add(opinion);
+	}
+
+//PARA TESTS
+	public Integer cantidadDeOpiniones() {
+		// TODO Auto-generated method stub
+		return opiniones.size();
 	}
 }
 	 

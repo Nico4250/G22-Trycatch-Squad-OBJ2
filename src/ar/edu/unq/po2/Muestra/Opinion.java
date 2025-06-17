@@ -11,13 +11,19 @@ public class Opinion {
  private  Usuario usuario;
 		
  public Opinion(Usuario usuario, OpinionImagen opinion) {
-		        // this.opinion = opinion;
-		LocalDate.now();
-		this.usuario = usuario;
+	 	this.setOpinion(opinion);
+		this.setFechaPublicacion(LocalDate.now());
+		this.setUsuario(usuario);
+		
 		}
 		
 		
- public LocalDate getFechaPublicacion() {
+ private void setUsuario(Usuario usuario) {
+	 this.usuario = usuario;
+}
+
+
+public LocalDate getFechaPublicacion() {
 		return fechaPublicacion;
 		}
 		
