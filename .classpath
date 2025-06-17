@@ -13,5 +13,8 @@
 	<classpathentry kind="lib" path="H:/Users/Max_xie/git/Unq-poo2-TPFinal/doc/mockito-inline-4.8.1.jar"/>
 	<classpathentry kind="lib" path="H:/Users/Max_xie/git/Unq-poo2-TPFinal/doc/objenesis-3.3.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="X:/IDES Y CONFIGURACIONES/mockito core/byte-buddy-1.15.7.jar"/>
+	<classpathentry kind="lib" path="X:/IDES Y CONFIGURACIONES/mockito core/mockito-core-5.14.2.jar"/>
+	<classpathentry kind="lib" path="X:/IDES Y CONFIGURACIONES/mockito core/net.bytebuddy.byte-buddy-agent_1.15.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
