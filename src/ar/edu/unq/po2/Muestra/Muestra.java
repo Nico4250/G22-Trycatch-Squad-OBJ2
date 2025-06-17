@@ -15,7 +15,7 @@ public class Muestra {
     private OpinionImagen       tipoInsecto;
     private LocalDate			fechaCreacion;
     private ArrayList<Opinion> 	opiniones; 
-    private IEstadoMuestra       estado;
+    private IEstadoMuestra      estado;
     
     
     public Muestra(Ubicacion ubicacion, Opinion opinion) {
