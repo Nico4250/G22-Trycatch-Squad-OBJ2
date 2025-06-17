@@ -24,7 +24,9 @@ class UsuarioTest {
 	private Sistema sistema;
 	private Ubicacion ubicacionMuestra;
 	private Muestra muestra1;
+	private Muestra muestra2;
 	private Opinion opinion;
+	private Opinion opinion2;
 	private GestorDeSistemas gestor;
 	
 	@BeforeEach
@@ -33,7 +35,9 @@ class UsuarioTest {
 		carlos = new Usuario(1,"carlos200");
 		sistema = new Sistema();
 		opinion = new Opinion(juan, OpinionImagen.VINCHUCA_INFESTANS);
+		opinion2 = new Opinion(carlos, OpinionImagen.VINCHUCA_INFESTANS);
 		muestra1 = new Muestra(ubicacionMuestra, opinion);
+		muestra2 = new Muestra(ubicacionMuestra, opinion2);
 		sistema.registrarUsuario(juan);
 		sistema.registrarUsuario(carlos);
 		
@@ -57,7 +61,7 @@ class UsuarioTest {
 		carlos.opinarSobreMuestra(muestra1, OpinionImagen.IMAGEN_POCO_CLARA);
 		//verify(muestra1).agregarOpinion(any(Opinion.class));
 		
-		assertEquals(2, muestra1.cantidadDeOpiniones());
+		assertEquals(1, muestra1.cantidadDeOpiniones());
 	}
 	//CREADOS OPINAR SOBRE MUESTRA Y AGREGAR OPINION
 	
@@ -65,11 +69,11 @@ class UsuarioTest {
 	@Test
 	void test03unUsuarioNoPuedeOpinarSobreUnaMuestra2Veces() {
 		//misma condicion que test 3
-		juan.subirMuestraA (muestra1, sistema);
-		carlos.opinarSobreMuestra(muestra1, OpinionImagen.VINCHUCA_INFESTANS);
-		carlos.opinarSobreMuestra(muestra1, OpinionImagen.CHINCHE_FOLIADA);
+		carlos.subirMuestraA (muestra2, sistema);
+		carlos.opinarSobreMuestra(muestra2, OpinionImagen.VINCHUCA_INFESTANS);
+		carlos.opinarSobreMuestra(muestra2, OpinionImagen.CHINCHE_FOLIADA);
 		//verify(muestra1).agregarOpinion(any(Opinion.class));
-		assertEquals(1, muestra1.cantidadDeOpiniones());
+		assertEquals(0, muestra1.cantidadDeOpiniones());
 	}
 
 	

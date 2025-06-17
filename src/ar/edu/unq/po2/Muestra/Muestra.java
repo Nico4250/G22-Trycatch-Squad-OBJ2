@@ -24,7 +24,6 @@ public class Muestra {
     	this.opiniones = new ArrayList<Opinion>();
     	this.tipoInsecto = opinion.getOpinion();
     	this.estado = (IEstadoMuestra) new MuestraNoVerificada(this);
-    	this.opiniones.add(opinion);
     	this.fechaCreacion = LocalDate.now();
     }
     
@@ -58,7 +57,7 @@ public class Muestra {
 	}
 	
 	public void agregarOpinion(Opinion opinion) { // ver de agregar exception si ya opino
-		if(this.elUsuarioNoOpino(opinion.getUsuario())) {
+		if(this.elUsuarioNoOpino(opinion.getUsuario()) && this.getUsuario() != opinion.getUsuario() ) {
 			this.estado.agregarOpinion(opinion);
 		} 
 	}
