@@ -44,55 +44,32 @@ public class Muestra {
 		return opiniones;
 	}
 	
-	public void cambiarEstado(IEstadoMuestra nuevoEstado) {
-		this.estado = nuevoEstado;
-	}
-
 	public IEstadoMuestra getEstadoMuestra() {
 		return this.estado;
 	}
-
+ 
 	public OpinionImagen getTipoInsecto() {
 		return tipoInsecto;
 	}
 	
-	public void agregarOpinion(Opinion opinion) { // ver de agregar exception si ya opino
-		if(this.elUsuarioNoOpino(opinion.getUsuario()) && this.getUsuario() != opinion.getUsuario() ) {
-			this.estado.agregarOpinion(opinion);
-		} 
-	}
-
-	public Opinion opinionDeUsuario(Usuario usuario) {
-		// Precondicion: el usuario tiene que haber opinado en la muestra
-		Stream<Opinion> opinionLista = this.getOpiniones().stream().filter(opinion -> opinion.getUsuario().equals(usuario));
-		return opinionLista.toList().get(0);
+	public void cambiarEstado(IEstadoMuestra nuevoEstado) {
+		this.estado = nuevoEstado;
 	}
 	
-	
-	
-	public Boolean elUsuarioNoOpino(Usuario usuario) {
-		return this.getOpiniones().stream().noneMatch(opinion -> opinion.getUsuario().getId() == usuario.getId());
+	public void agregarOpinion(Opinion opinion) {
+			estado.agregarOpinion(opinion);
 	}
-
-
-	public Boolean esVerificada() {
-		return estado.esVerificada();
+	
+	public void actualizarOpinion() {
+		estado.actualizarOpinion();
 	}
-
-
+	
 	public List<Opinion> opinionesExpertos() {
 		Stream <Opinion> opinionesExpertos = this.opiniones.stream().filter(opinion -> opinion.getUsuario().esExperto());
 		return opinionesExpertos.toList();
 	}
 	
-	public void actualizarOpinion(){
-		ArrayList<OpinionImagen> opinionesDeImagen = new ArrayList<OpinionImagen>();
-		this.getOpiniones().stream().forEach(opinion -> opinionesDeImagen.add(opinion.getOpinion()));
-		this.actualizarOpinionActual(opinionesDeImagen);
-	}
-	
-
-    public void  actualizarOpinionActual(List<OpinionImagen> opiniones){
+	public void  actualizarOpinionActual(List<OpinionImagen> opiniones){
         HashMap<OpinionImagen, Integer> recuento = new HashMap<>();
 
         for (OpinionImagen opinion : opiniones) {
@@ -135,17 +112,27 @@ public class Muestra {
     		this.tipoInsecto = opinion;
     	}
     }
+    
+	public boolean elUsuarioNoOpino(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return this.getOpiniones().stream().noneMatch(opinion -> opinion.getUsuario().getId() == usuario.getId());
+	}
 
-//ESTE METODO SOBRA? ES IGUAL AL PRIMERO PERO SIN COMPROBACION
+
 	public void agregarOpinionDe(Opinion opinion) {
+		// TODO Auto-generated method stub
 		this.opiniones.add(opinion);
 	}
+	
 
 //PARA TESTS
 	public Integer cantidadDeOpiniones() {
 		// TODO Auto-generated method stub
 		return opiniones.size();
 	}
+
+
+
 }
 	 
 	 

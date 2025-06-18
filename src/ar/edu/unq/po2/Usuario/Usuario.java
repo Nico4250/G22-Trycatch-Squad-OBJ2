@@ -8,14 +8,18 @@ import ar.edu.unq.po2.Sistema.Sistema;
 public class Usuario {
 	private int    			id;
 	private String 			nombreUsuario;
-	private Boolean 		esExperto;
-	private Boolean			esEspecialista;
+	protected Boolean 		esExperto;
+	protected Boolean		esEspecialista;
 	
 	public Usuario(int id, String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
-		this.id = id;
+		this.setId(id);
 		this.esExperto = false;
 		this.esEspecialista = false;
+	}
+	
+	private void setId(int id) {
+		this.id = id;
 	}
 	
 	public int getId() {
