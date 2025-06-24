@@ -29,7 +29,7 @@ class MuestraEnVerificacionTest {
     	opinion2Mock = mock(Opinion.class);
     	usuarioMock = mock(Usuario.class);
     	usuario2Mock = mock(Usuario.class);
-    	estadoEnVerificacion = new MuestraEnVerificacion(muestraMock); 
+    	estadoEnVerificacion = new MuestraEnVerificacion(); 
     }
     
     @Test
@@ -43,7 +43,7 @@ class MuestraEnVerificacionTest {
     	
     	when(opinionMock.getUsuario()).thenReturn(usuarioMock);
     	
-    	assertFalse(estadoEnVerificacion.puedeOpinar(usuarioMock));
+    	assertFalse(estadoEnVerificacion.puedeOpinar(muestraMock, usuarioMock));
     	
 
     }
@@ -59,12 +59,13 @@ class MuestraEnVerificacionTest {
     	when(opinion2Mock.getUsuario()).thenReturn(usuario2Mock);
 
     	when(muestraMock.elUsuarioNoOpino(usuario2Mock)).thenReturn(true);
+    	when(muestraMock.puedeOpinar(usuario2Mock)).thenReturn(true);
     	when(muestraMock.opinionesExpertos()).thenReturn(List.of());
 
     	
-    	assertTrue(estadoEnVerificacion.puedeOpinar(usuario2Mock));
+    	assertTrue(estadoEnVerificacion.puedeOpinar(muestraMock, usuario2Mock));
             
-        assertDoesNotThrow(() -> estadoEnVerificacion.agregarOpinion(opinion2Mock));
+        assertDoesNotThrow(() -> estadoEnVerificacion.agregarOpinion(muestraMock, opinion2Mock));
 
         verify(muestraMock).agregarOpinionDe(opinion2Mock);
             
@@ -78,10 +79,12 @@ class MuestraEnVerificacionTest {
         when(opinionMock.getOpinion()).thenReturn(OpinionImagen.CHINCHE_FOLIADA);
         when(muestraMock.opinionesExpertos()).thenReturn(List.of(opinionMock));
 
-        estadoEnVerificacion.actualizarOpinion();
+        estadoEnVerificacion.actualizarOpinion(muestraMock);
 
         verify(muestraMock).actualizarOpinionActual(any());
     }
+    
+
 
     @Test
     void unSegundoExpertoConOpiniónDistintaNoVerificaLaMuestra() {
@@ -103,9 +106,9 @@ class MuestraEnVerificacionTest {
         when(muestraMock.opinionesExpertos()).thenReturn(opiniones);
 
         when(muestraMock.getUsuario()).thenReturn(mock(Usuario.class));
-        when(muestraMock.elUsuarioNoOpino(usuario2Mock)).thenReturn(true);
+        when(muestraMock.puedeOpinar(usuario2Mock)).thenReturn(true);
 
-        estadoEnVerificacion.agregarOpinion(opinion2Mock);
+        estadoEnVerificacion.agregarOpinion(muestraMock, opinion2Mock);
 
         verify(muestraMock).agregarOpinionDe(opinion2Mock);
         
@@ -114,6 +117,7 @@ class MuestraEnVerificacionTest {
         verify(muestraMock, never()).cambiarEstado(any(MuestraVerificada.class));
     }
 
+ 
     @Test
     void unSegundoExpertoConMismaOpinionVerificaLaMuestra() {
     	ArrayList<Opinion> opiniones = new ArrayList<Opinion>();
@@ -134,9 +138,9 @@ class MuestraEnVerificacionTest {
          when(muestraMock.opinionesExpertos()).thenReturn(opiniones);
 
          when(muestraMock.getUsuario()).thenReturn(mock(Usuario.class));
-         when(muestraMock.elUsuarioNoOpino(usuario2Mock)).thenReturn(true);
+         when(muestraMock.puedeOpinar(usuario2Mock)).thenReturn(true);
 
-         estadoEnVerificacion.agregarOpinion(opinion2Mock);
+         estadoEnVerificacion.agregarOpinion(muestraMock, opinion2Mock);
 
          verify(muestraMock).agregarOpinionDe(opinion2Mock);
          

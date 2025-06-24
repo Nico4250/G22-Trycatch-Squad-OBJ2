@@ -23,7 +23,7 @@ public class Muestra {
     	this.usuario = opinion.getUsuario();
     	this.opiniones = new ArrayList<Opinion>();
     	this.tipoInsecto = opinion.getOpinion();
-    	this.estado = (IEstadoMuestra) new MuestraNoVerificada(this);
+    	this.estado = (IEstadoMuestra) new MuestraNoVerificada();
     	this.fechaCreacion = LocalDate.now();
     }
     
@@ -57,11 +57,15 @@ public class Muestra {
 	}
 	
 	public void agregarOpinion(Opinion opinion) {
-			estado.agregarOpinion(opinion);
+			estado.agregarOpinion(this, opinion);
 	}
 	
 	public void actualizarOpinion() {
-		estado.actualizarOpinion();
+		estado.actualizarOpinion(this);
+	}
+	
+	public boolean elUsuarioNoOpino(Usuario usuario) {
+		return this.getOpiniones().stream().noneMatch(opinion -> opinion.getUsuario().getId() == usuario.getId());
 	}
 	
 	public List<Opinion> opinionesExpertos() {
@@ -112,16 +116,10 @@ public class Muestra {
     		this.tipoInsecto = opinion;
     	}
     }
-    
-	public boolean elUsuarioNoOpino(Usuario usuario) {
-		// TODO Auto-generated method stub
-		return this.getOpiniones().stream().noneMatch(opinion -> opinion.getUsuario().getId() == usuario.getId());
-	}
-
 
 	public void agregarOpinionDe(Opinion opinion) {
 		// TODO Auto-generated method stub
-		this.opiniones.add(opinion);
+		estado.agregarOpinionDe(this, opinion);
 	}
 	
 	public boolean esVerificada() {
@@ -129,7 +127,7 @@ public class Muestra {
 	}
 	
 	public boolean puedeOpinar(Usuario usuario) {
-		return estado.puedeOpinar(usuario);
+		return estado.puedeOpinar(this, usuario);
 	}
 
 //PARA TESTS
@@ -138,11 +136,13 @@ public class Muestra {
 		return opiniones.size();
 	}
 
-
-
 }
 	 
 	 
+ 
+
+
+
  
 
 

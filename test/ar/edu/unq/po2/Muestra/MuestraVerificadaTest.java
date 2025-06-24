@@ -21,7 +21,7 @@ class MuestraVerificadaTest {
     	muestraMock = mock(Muestra.class);
     	opinionMock = mock(Opinion.class);
     	usuarioMock = mock(Usuario.class);
-    	estadoVerificado = new MuestraVerificada(muestraMock); 
+    	estadoVerificado = new MuestraVerificada(); 
     }
 
     @Test
@@ -31,23 +31,23 @@ class MuestraVerificadaTest {
 
     @Test
     void noSePuedeOpinarSobreUnaMuestraVerificada() {
-    	assertDoesNotThrow(() -> estadoVerificado.agregarOpinion(opinionMock));
+    	assertDoesNotThrow(() -> estadoVerificado.agregarOpinion(muestraMock, opinionMock));
     }
 
     @Test
     void actualizarOpinionNoHaceNadaEnMuestraVerificada() {
     	//EN ESTE ESTADO ACTUALIZAR OPINION NO TIENE COMPORTAMIENTO
-        assertDoesNotThrow(() -> estadoVerificado.actualizarOpinion());
+        assertDoesNotThrow(() -> estadoVerificado.actualizarOpinion(muestraMock));
     }
 
     @Test
     void puedeOpinarSiempreDevuelveFalse() {
     	//EL USUARIO EN ESTE CASO ES BASICO
-        assertFalse(estadoVerificado.puedeOpinar(usuarioMock));
+        assertFalse(estadoVerificado.puedeOpinar(muestraMock, usuarioMock));
         
         //EL USUARIO EN ESTE CASO ES EXPERTO
         when(usuarioMock.esExperto()).thenReturn(true);
-        assertFalse(estadoVerificado.puedeOpinar(usuarioMock));
+        assertFalse(estadoVerificado.puedeOpinar(muestraMock, usuarioMock));
         
         //NO ACEPTA OPINIONES EN GENERAL
     }

@@ -24,7 +24,7 @@ class MuestraNoVerificadaTest {
     	opinionMock = mock(Opinion.class);
     	usuarioMock = mock(Usuario.class);
     	usuario2Mock = mock(Usuario.class);
-    	estadoNoVerificado = new MuestraNoVerificada(muestraMock); 
+    	estadoNoVerificado = new MuestraNoVerificada(); 
     }
     
     @Test
@@ -43,9 +43,9 @@ class MuestraNoVerificadaTest {
 
         when(muestraMock.elUsuarioNoOpino(usuario2Mock)).thenReturn(true);
         
-        assertTrue(estadoNoVerificado.puedeOpinar(usuario2Mock));
+        assertTrue(estadoNoVerificado.puedeOpinar(muestraMock, usuario2Mock));
         
-        estadoNoVerificado.agregarOpinion(opinionMock);
+        estadoNoVerificado.agregarOpinion(muestraMock, opinionMock);
         verify(muestraMock).agregarOpinionDe(opinionMock);
     }
 
@@ -61,7 +61,7 @@ class MuestraNoVerificadaTest {
         when(muestraMock.getUsuario()).thenReturn(usuario2Mock);
         when(muestraMock.elUsuarioNoOpino(usuarioMock)).thenReturn(true);
         
-        estadoNoVerificado.agregarOpinion(opinionMock);
+        estadoNoVerificado.agregarOpinion(muestraMock, opinionMock);
         
         
         verify(muestraMock).cambiarEstado(any(MuestraEnVerificacion.class));

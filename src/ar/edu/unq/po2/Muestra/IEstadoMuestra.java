@@ -6,9 +6,12 @@ public interface IEstadoMuestra {
 
 	public abstract boolean esVerificada();
 
-	public abstract void agregarOpinion(Opinion opinion);
+	public abstract void agregarOpinion(Muestra muestra, Opinion opinion);
 
-	public abstract void actualizarOpinion();
+	public abstract void actualizarOpinion(Muestra muestra);
 	
-	public abstract boolean puedeOpinar(Usuario usuario);
+	public abstract boolean puedeOpinar(Muestra muestra, Usuario usuario);
+
+	public abstract void agregarOpinionDe(Muestra muestra, Opinion opinion);
 }
+

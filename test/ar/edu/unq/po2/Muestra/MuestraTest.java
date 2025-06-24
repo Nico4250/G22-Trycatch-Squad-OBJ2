@@ -180,11 +180,11 @@ class MuestraTest {
 	    	IEstadoMuestra estadoMock = mock(IEstadoMuestra.class);
 	    	unaMuestra.cambiarEstado(estadoMock); 
 	    	
-	        when(estadoMock.puedeOpinar(usuarioMock)).thenReturn(true);
+	        when(estadoMock.puedeOpinar(unaMuestra, usuarioMock)).thenReturn(true);
 	    	
 	    	assertTrue(unaMuestra.puedeOpinar(usuarioMock));
 	    	
-	    	verify(estadoMock).puedeOpinar(usuarioMock); 	
+	    	verify(estadoMock).puedeOpinar(unaMuestra, usuarioMock); 	
 	    }
 	    
 	    @Test

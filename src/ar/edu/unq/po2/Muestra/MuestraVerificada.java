@@ -4,11 +4,9 @@ import ar.edu.unq.po2.Usuario.Usuario;
 
 public class MuestraVerificada implements IEstadoMuestra{
 	
-	private Muestra muestra;
 
-	public MuestraVerificada(Muestra muestra) {
+	public MuestraVerificada() {
 		// TODO Auto-generated constructor stub
-		this.setMuestra(muestra);
 	}
 	
 	
@@ -19,25 +17,27 @@ public class MuestraVerificada implements IEstadoMuestra{
 	}
 	
 	@Override
-	public void agregarOpinion(Opinion opinion) {
+	public void agregarOpinion(Muestra muestra, Opinion opinion) {
 		//YA NO SE PUEDE OPINAR, NO HACE NADA AGREGAR UNA NUEVA OPINION
 			
 	}
 
 	@Override
-	public void actualizarOpinion() {
+	public void actualizarOpinion(Muestra muestra) {
 		//NO HACE NADA YA QUE MUESTRA EN VERIFICACION SE ENCARGA DE HACER LA ULTIMA ACTUALIZACION
 	}
 
 	@Override
-	public boolean puedeOpinar(Usuario usuario) {
+	public boolean puedeOpinar(Muestra muestra, Usuario usuario) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-
-	private void setMuestra(Muestra muestra) {
-		this.muestra = muestra;
+	@Override
+	public void agregarOpinionDe(Muestra muestra, Opinion opinion) {
+		// TODO Auto-generated method stub
+		//TAMPOCO HACE NADA
+		
 	}
 
 }
