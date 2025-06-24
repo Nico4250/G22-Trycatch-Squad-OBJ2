@@ -1,12 +1,19 @@
 package ar.edu.unq.po2.Organizacion;
 
-import java.util.List;
+import java.util.List; 
 import java.util.stream.Collectors;
+import ar.edu.unq.po2.Muestra.*;
+import ar.edu.unq.po2.Sistema.*;
 
 public class CalculadorGeodesico {
+	private Sistema sistema;
 	/*usamos el calculo de Haversine para resolver distancias, si quisieramos o necesitaramos mas 
 	  algoritmos de calculo como Manhattan o euclidiana tendriamos que crear una interfaz
 	*/
+    public CalculadorGeodesico(Sistema sistema) {
+    	this.sistema = sistema;
+    }
+    
 	public double calcularDistancia(Ubicacion ubicacionBase, Ubicacion otraUbicacion) {
 		final double radioTierra = 6371; // Radio promedio de la Tierra en km
 	    double deltaLat = Math.toRadians(otraUbicacion.getLatitud() - ubicacionBase.getLatitud());
@@ -22,9 +29,20 @@ public class CalculadorGeodesico {
 	
 	public List<Ubicacion> filtrarUbicaciones (Ubicacion ubicacionBase,List<Ubicacion> ubicaciones, int distancia) {
 		return ubicaciones.stream()
-	            .filter(ubicacion -> ubicacionBase.distanciaEntre(ubicacion) <= distancia)
+				.filter(ubicacion -> this.calcularDistancia(ubicacionBase, ubicacion)<= distancia)
+	         //   .filter(ubicacion -> ubicacionBase.distanciaEntre(ubicacion) <= distancia)
 	            .collect(Collectors.toList()); //convertimos el stream a lista
 	}
+	
+	public List<Muestra> muestrasAMenosDe(Muestra muestra, int distancia) {
+        Ubicacion origen = muestra.getUbicacion();
+        List<Muestra> muestrasTotales = sistema.getMuestras();
+        return muestrasTotales.stream()
+            .filter(m -> !m.equals(muestra))
+            .filter(m -> this.calcularDistancia(origen, m.getUbicacion()) <= distancia)
+           // .filter(m -> origen.distanciaEntre(m.getUbicacion()) <= distancia)
+            .toList();
+    }
 
 
 }

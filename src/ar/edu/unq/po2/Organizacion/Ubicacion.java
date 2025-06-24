@@ -1,18 +1,19 @@
 package ar.edu.unq.po2.Organizacion;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import ar.edu.unq.po2.Muestra.*;
-
+import ar.edu.unq.po2.Sistema.*;
 
 public class Ubicacion {
   private double latitud;
   private double longitud;
-  private CalculadorGeodesico calculador = new CalculadorGeodesico();
   
-  public Ubicacion(double latitud, double longitud) {
+  private CalculadorGeodesico calculador;
+  
+  public Ubicacion(double latitud, double longitud, CalculadorGeodesico calculador,Sistema sistema) {
 	  this.latitud = latitud;
 	  this.longitud = longitud;
+	  this.calculador = calculador;
   }
   
 public double getLatitud() {
@@ -37,8 +38,7 @@ public List<Ubicacion> ubicacionesAMenosDe(List<Ubicacion> ubicaciones, int dist
 }
 	
 public List<Muestra> muestrasAMenosDe(Muestra muestra, int distancia ) {
-	// ESTO VA EN SISTEMA PORQUE NECESITAMOS LA LISTA DE MUESTRAS, NO VA EN UBICACION, lo cambio luego 
-	//revisamos si va en el calculador por si este puede hacer un sistema,getmuestra
+	return calculador.muestrasAMenosDe(muestra,distancia);
 }
 
 
