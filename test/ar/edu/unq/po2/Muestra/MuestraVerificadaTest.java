@@ -25,23 +25,23 @@ class MuestraVerificadaTest {
     }
 
     @Test
-    void unaMuestraVerificadaEsVerificada() {
+    void test01UnaMuestraVerificadaEsVerificada() {
         assertTrue(estadoVerificado.esVerificada());
     }
 
     @Test
-    void noSePuedeOpinarSobreUnaMuestraVerificada() {
+    void test02NoSePuedeOpinarSobreUnaMuestraVerificada() {
     	assertDoesNotThrow(() -> estadoVerificado.agregarOpinion(muestraMock, opinionMock));
     }
 
     @Test
-    void actualizarOpinionNoHaceNadaEnMuestraVerificada() {
+    void test03ActualizarOpinionNoHaceNadaEnMuestraVerificada() {
     	//EN ESTE ESTADO ACTUALIZAR OPINION NO TIENE COMPORTAMIENTO
         assertDoesNotThrow(() -> estadoVerificado.actualizarOpinion(muestraMock));
     }
 
     @Test
-    void puedeOpinarSiempreDevuelveFalse() {
+    void test04PuedeOpinarSiempreDevuelveFalseCuandoSeVerificoLaMuestra() {
     	//EL USUARIO EN ESTE CASO ES BASICO
         assertFalse(estadoVerificado.puedeOpinar(muestraMock, usuarioMock));
         

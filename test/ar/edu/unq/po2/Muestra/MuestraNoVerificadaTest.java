@@ -5,8 +5,6 @@ import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.opentest4j.AssertionFailedError;
-
 import ar.edu.unq.po2.Usuario.Usuario;
 
 class MuestraNoVerificadaTest {
@@ -28,12 +26,12 @@ class MuestraNoVerificadaTest {
     }
     
     @Test
-    void unaMuestraNoVerificadaNoEsVerificada() {
+    void test01UnaMuestraNoVerificadaNoEsVerificada() {
     	assertFalse(estadoNoVerificado.esVerificada());
     }
     
     @Test
-    void puedeOpinarUnUsuarioBasico() {
+    void test02PuedeOpinarUnUsuarioBasico() {
     	
         when(usuario2Mock.getId()).thenReturn(1);
         when(muestraMock.getUsuario()).thenReturn(usuarioMock);
@@ -52,7 +50,7 @@ class MuestraNoVerificadaTest {
 
     
     @Test
-    void siUnExpertoOpinaPasaAEstadoEnVerificacion() { 
+    void test03SiUnExpertoOpinaPasaAEstadoEnVerificacion() { 
       
         when(usuarioMock.getId()).thenReturn(1);
         when(usuarioMock.esExperto()).thenReturn(true);

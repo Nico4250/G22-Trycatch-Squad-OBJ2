@@ -33,13 +33,13 @@ class MuestraEnVerificacionTest {
     }
     
     @Test
-    void unaMuestraEnVerificacionNoEsVerificada() {
+    void test01UnaMuestraEnVerificacionNoEsVerificada() {
     	
     	assertFalse(estadoEnVerificacion.esVerificada());
     }
     
     @Test
-    void usuariosBasicosNoPuedenOpinarEnEsteEstado() {
+    void test02UsuariosBasicosNoPuedenOpinarEnEsteEstado() {
     	
     	when(opinionMock.getUsuario()).thenReturn(usuarioMock);
     	
@@ -49,7 +49,7 @@ class MuestraEnVerificacionTest {
     }
     
     @Test
-    void usuariosExpertosPuedenOpinarEnEsteEstado() {
+    void test03UsuariosExpertosPuedenOpinarEnEsteEstado() {
     	
     	when(usuarioMock.getId()).thenReturn(1);
     	when(muestraMock.getUsuario()).thenReturn(usuarioMock);
@@ -74,7 +74,7 @@ class MuestraEnVerificacionTest {
     }
     
     @Test
-    void actualizarOpinionCambiaLaOpinionActual() {
+    void test04ActualizarOpinionCambiaLaOpinionActual() {
 
         when(opinionMock.getOpinion()).thenReturn(OpinionImagen.CHINCHE_FOLIADA);
         when(muestraMock.opinionesExpertos()).thenReturn(List.of(opinionMock));
@@ -87,7 +87,7 @@ class MuestraEnVerificacionTest {
 
 
     @Test
-    void unSegundoExpertoConOpiniónDistintaNoVerificaLaMuestra() {
+    void test05UnSegundoExpertoConOpiniónDistintaNoVerificaLaMuestra() {
     	ArrayList<Opinion> opiniones = new ArrayList<Opinion>();
     	
         when(usuarioMock.getId()).thenReturn(1);
@@ -119,7 +119,7 @@ class MuestraEnVerificacionTest {
 
  
     @Test
-    void unSegundoExpertoConMismaOpinionVerificaLaMuestra() {
+    void test06UnSegundoExpertoConMismaOpinionVerificaLaMuestra() {
     	ArrayList<Opinion> opiniones = new ArrayList<Opinion>();
     	
     	 when(usuarioMock.getId()).thenReturn(1);

@@ -16,15 +16,17 @@ public class Muestra {
     private LocalDate			fechaCreacion;
     private ArrayList<Opinion> 	opiniones; 
     private IEstadoMuestra      estado;
+    private String 				nombreDeFoto;
     
     
-    public Muestra(Ubicacion ubicacion, Opinion opinion) {
+    public Muestra(Ubicacion ubicacion, Opinion opinion, String nombreDeFoto) {
     	this.ubicacion = ubicacion;
     	this.usuario = opinion.getUsuario();
     	this.opiniones = new ArrayList<Opinion>();
     	this.tipoInsecto = opinion.getOpinion();
     	this.estado = (IEstadoMuestra) new MuestraNoVerificada();
     	this.fechaCreacion = LocalDate.now();
+    	this.nombreDeFoto = nombreDeFoto;
     }
     
 	
@@ -50,6 +52,10 @@ public class Muestra {
  
 	public OpinionImagen getTipoInsecto() {
 		return tipoInsecto;
+	}
+	
+	public String getFoto() {
+		return this.nombreDeFoto + ".JPG";
 	}
 	
 	public void cambiarEstado(IEstadoMuestra nuevoEstado) {

@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import ar.edu.unq.po2.Muestra.Opinion;
 import ar.edu.unq.po2.Usuario.Usuario;
 
-public class GestorDeSistemas {
+public class GestorDeUsuarios {
 
 	public void ActualizarNivelesDeUsuarioEn(Sistema s) {
 		for (Usuario u: s.getUsuarios()) {
