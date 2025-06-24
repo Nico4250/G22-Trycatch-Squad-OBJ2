@@ -124,6 +124,13 @@ public class Muestra {
 		this.opiniones.add(opinion);
 	}
 	
+	public boolean esVerificada() {
+		return estado.esVerificada();
+	}
+	
+	public boolean puedeOpinar(Usuario usuario) {
+		return estado.puedeOpinar(usuario);
+	}
 
 //PARA TESTS
 	public Integer cantidadDeOpiniones() {

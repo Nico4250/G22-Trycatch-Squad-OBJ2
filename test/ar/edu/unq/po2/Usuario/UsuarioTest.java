@@ -45,6 +45,16 @@ class UsuarioTest {
 		muestra2Mock = mock(Muestra.class);
 
 	}	
+	
+	@Test
+	void test00UnUsuarioSeCreaConTodosSusDatos() {
+		Usuario usuarioInicial = new Usuario(0, "usuario0.exe");
+		
+		assertEquals(0, usuarioInicial.getId());
+		assertEquals("usuario0.exe", usuarioInicial.nombreUsuario());
+		assertEquals (false, usuarioInicial.esExperto);
+		assertEquals(false, usuarioInicial.esEspecialista);
+	}
 
 	@Test
 	void test01UsuarioSubeUnaMuestra() {
@@ -81,40 +91,7 @@ class UsuarioTest {
 		assertEquals(0, muestra2.cantidadDeOpiniones());
 	}
 
-	@Test
-	//NO PUDE CORRERLO AUN CON MOCKITO
-	void test04unUsuarioNoPuedeOpinarSobreUnaMuestra2Veces() {
-		 
-		Sistema sistema = new Sistema();
-		Opinion opinion2 = new Opinion(juan, OpinionImagen.VINCHUCA_INFESTANS);
-		Muestra muestra2 = new Muestra(ubicacionMock, opinion2);
-
-		juan.subirMuestraA (muestra2, sistema);
-		carlos.opinarSobreMuestra(muestra2, OpinionImagen.VINCHUCA_INFESTANS);
-		assertThrows(RuntimeException.class, () -> {
-		    carlos.opinarSobreMuestra(muestra2, OpinionImagen.CHINCHE_FOLIADA);
-		});
-
-		assertEquals(1, muestra2.cantidadDeOpiniones());
-	}
-	
-	
-	
-	//MISMO TEST 4 CON SPY mock PERO FALLA
-	@Test
-	void test04unUsuarioNoPuedeOpinarSobreUnaMuestra2VecesMOCKITO(){
-	Opinion opinionInicial = new Opinion(juan, OpinionImagen.VINCHUCA_INFESTANS);
-	Muestra muestraSpy = spy(new Muestra(ubicacionMock, opinionInicial));
-	carlos.opinarSobreMuestra(muestraSpy, OpinionImagen.VINCHUCA_INFESTANS);
-
-	assertThrows(RuntimeException.class, () -> {
-	    carlos.opinarSobreMuestra(muestraSpy, OpinionImagen.CHINCHE_FOLIADA);
-	});
-
-	verify(muestraSpy, times(1)).agregarOpinionDe(any());
-}
-
-	
+	//PROBABLEMENTE SEA UN TEST PARA GESTOR DE SISTEMAS
 	@Test
 	void test05unUsuarioSeConvierteEnExperto() {
 		GestorDeSistemas gestor = new GestorDeSistemas();

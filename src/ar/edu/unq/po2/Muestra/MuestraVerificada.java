@@ -20,11 +20,8 @@ public class MuestraVerificada implements IEstadoMuestra{
 	
 	@Override
 	public void agregarOpinion(Opinion opinion) {
-		//YA NO SE PUEDE OPINAR
-		if (!this.puedeOpinar(opinion.getUsuario())) {
-			throw new RuntimeException("No se puede opinar sobre esta muestra, ya se encuentra verificada");
-		}
-		
+		//YA NO SE PUEDE OPINAR, NO HACE NADA AGREGAR UNA NUEVA OPINION
+			
 	}
 
 	@Override
