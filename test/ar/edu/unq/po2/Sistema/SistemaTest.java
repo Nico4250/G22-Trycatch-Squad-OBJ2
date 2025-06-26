@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import ar.edu.unq.po2.Muestra.Muestra;
 import ar.edu.unq.po2.Organizacion.Organizacion;
+import ar.edu.unq.po2.Organizacion.ZonaDeCobertura;
 import ar.edu.unq.po2.Usuario.Usuario;
 
 class SistemaTest {
@@ -108,18 +109,31 @@ class SistemaTest {
 	}
 	
 	@Test
-	void test07SistemaDelegaLaActualizacionDeNivelesAUnGestorDeUsuarios() {
-		Sistema sistema = new Sistema();
-		Usuario usuarioMock = mock(Usuario.class);
-		
-		when(usuarioMock.esExperto()).thenReturn(true);
-		
-		sistema.registrarUsuario(usuarioMock);
-		assertTrue(sistema.getUsuarios().contains(usuarioMock));
-		
-		sistema.actualizarNivelesDeUsuarios();		
-		
-		verify(usuarioMock).degradarABasico();
+	void test07SistemaRegistraUnaZona() {
+	    Sistema sistema = new Sistema();
+	    assertTrue(sistema.getZonasDeCobertura().isEmpty());
+
+	    ZonaDeCobertura zonaMock = mock(ZonaDeCobertura.class);
+
+	    sistema.registrarZonaDeCobertura(zonaMock);
+
+	    assertTrue(sistema.getZonasDeCobertura().contains(zonaMock));
 	}
+
+	@Test
+	void test08SistemaNoRegistraUnaMismaZona2Veces() {
+	    Sistema sistema = new Sistema();
+	    assertTrue(sistema.getZonasDeCobertura().isEmpty());
+	    assertEquals(0, sistema.getZonasDeCobertura().size());
+
+	    ZonaDeCobertura zonaMock = mock(ZonaDeCobertura.class);
+
+	    sistema.registrarZonaDeCobertura(zonaMock);
+	    assertEquals(1, sistema.getZonasDeCobertura().size());
+
+	    sistema.registrarZonaDeCobertura(zonaMock);
+	    assertEquals(1, sistema.getZonasDeCobertura().size());
+	}
+
 
 }

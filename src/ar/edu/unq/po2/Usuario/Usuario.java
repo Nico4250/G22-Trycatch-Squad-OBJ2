@@ -13,13 +13,9 @@ public class Usuario {
 	
 	public Usuario(int id, String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
-		this.setId(id);
+		this.id = id;
 		this.esExperto = false;
 		this.esEspecialista = false;
-	}
-	
-	private void setId(int id) {
-		this.id = id;
 	}
 	
 	public int getId() {

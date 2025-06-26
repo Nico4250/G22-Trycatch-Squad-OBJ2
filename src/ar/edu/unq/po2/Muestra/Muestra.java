@@ -102,7 +102,7 @@ public class Muestra {
         // this.tipoInsecto = opinionConMayorCantidad;
 	}
     
-    public void validarOpinionConMayorCantidad(OpinionImagen opinion, HashMap<OpinionImagen, Integer> mapOpiniones, int cantidad) {
+    private void validarOpinionConMayorCantidad(OpinionImagen opinion, HashMap<OpinionImagen, Integer> mapOpiniones, int cantidad) {
     	int cantidadDeValoresIguales = 0;
     	for(Map.Entry<OpinionImagen, Integer> entry : mapOpiniones.entrySet()) {
     	    OpinionImagen opinionDeImagen = entry.getKey();
@@ -115,7 +115,7 @@ public class Muestra {
     	this.definirTipoDeInsecto(cantidadDeValoresIguales > 1, opinion);
     }
     
-    public void definirTipoDeInsecto(boolean esEmpate, OpinionImagen opinion) {
+    private void definirTipoDeInsecto(boolean esEmpate, OpinionImagen opinion) {
     	if(esEmpate) {
     		this.tipoInsecto = OpinionImagen.NO_DEFINIDA;
     	} else {
@@ -124,8 +124,7 @@ public class Muestra {
     }
 
 	public void agregarOpinionDe(Opinion opinion) {
-		// TODO Auto-generated method stub
-		estado.agregarOpinionDe(this, opinion);
+		opiniones.add(opinion);
 	}
 	
 	public boolean esVerificada() {
@@ -136,11 +135,6 @@ public class Muestra {
 		return estado.puedeOpinar(this, usuario);
 	}
 
-//PARA TESTS
-	public Integer cantidadDeOpiniones() {
-		// TODO Auto-generated method stub
-		return opiniones.size();
-	}
 
 }
 	 

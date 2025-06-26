@@ -49,11 +49,4 @@ public class MuestraNoVerificada implements IEstadoMuestra{
 		
 	}
 
-	@Override
-	public void agregarOpinionDe(Muestra muestra, Opinion opinion) {
-		muestra.getOpiniones().add(opinion);		
-	}
-
-
-
 }

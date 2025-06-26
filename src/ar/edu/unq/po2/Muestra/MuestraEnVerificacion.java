@@ -89,9 +89,5 @@ public class MuestraEnVerificacion implements IEstadoMuestra {
 		return (muestra.elUsuarioNoOpino(usuario) && muestra.getUsuario() != usuario && usuario.esExperto()) ;
 	}
 
-	@Override
-	public void agregarOpinionDe(Muestra muestra, Opinion opinion) {
-		muestra.getOpiniones().add(opinion);		
-	}
 
 }

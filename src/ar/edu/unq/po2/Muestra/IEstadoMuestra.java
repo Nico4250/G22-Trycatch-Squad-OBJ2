@@ -12,6 +12,5 @@ public interface IEstadoMuestra {
 	
 	public abstract boolean puedeOpinar(Muestra muestra, Usuario usuario);
 
-	public abstract void agregarOpinionDe(Muestra muestra, Opinion opinion);
 }
 

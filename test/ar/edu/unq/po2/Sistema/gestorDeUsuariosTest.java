@@ -20,8 +20,8 @@ class gestorDeUsuariosTest {
     
 	@BeforeEach
     void setUp() {
-		gestor = new GestorDeUsuarios();
 		sistemaMock = mock(Sistema.class); 
+		gestor = new GestorDeUsuarios(sistemaMock);
 		usuarioMock = mock(Usuario.class); // Creamos un mock de Usuario
 	     
 		
@@ -69,7 +69,7 @@ class gestorDeUsuariosTest {
 	    //SISTEMAMOCK ALBERGARA LAS 10 MUESTRAS 
 	    when(sistemaMock.getMuestras()).thenReturn(muestrasEnviadasPorUsuario);
 
-	    gestor.ActualizarNivelesDeUsuarioEn(sistemaMock);
+	    gestor.ActualizarNivelesDeUsuario();
 
 	    //ES LLAMADO EL METODO "PROMOVER A EXPERTO"
 	    verify(usuarioMock, times(1)).promoverAExperto();
@@ -90,7 +90,7 @@ class gestorDeUsuariosTest {
    
 	    //EL USUARIO NO TIENE NI MUESTRAS NI OPINIONES SUBIDAS
 
-	    gestor.ActualizarNivelesDeUsuarioEn(sistemaMock);
+	    gestor.ActualizarNivelesDeUsuario();
 
 	    //ES LLAMADO EL METODO "DEGRADAR A BASICO"
 	    verify(usuarioMock, times(1)).degradarABasico();
@@ -113,7 +113,7 @@ class gestorDeUsuariosTest {
    
 	    //EL USUARIO NO TIENE NI MUESTRAS NI OPINIONES SUBIDAS
 
-	    gestor.ActualizarNivelesDeUsuarioEn(sistemaMock);
+	    gestor.ActualizarNivelesDeUsuario();
 
 	    //ES LLAMADO EL METODO "PROMOVER A EXPERTO"
 	    verify(usuarioMock, times(1)).promoverAExperto();

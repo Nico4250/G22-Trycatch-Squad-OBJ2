@@ -46,7 +46,7 @@ class MuestraTest {
 		assertEquals(usuarioMock, unaMuestra.getUsuario());
 		assertEquals(LocalDate.now(), unaMuestra.getFechaCreacion());
 		assertEquals(OpinionImagen.CHINCHE_FOLIADA, unaMuestra.getTipoInsecto());
-		assertEquals(0,unaMuestra.cantidadDeOpiniones());
+		assertEquals(0,unaMuestra.getOpiniones().size());
 		assertEquals("imagen01.JPG", unaMuestra.getFoto());
 	}
 
@@ -99,7 +99,7 @@ class MuestraTest {
 			
 			unaMuestra.agregarOpinion(opinion2Mock);
 			
-			assertEquals(1, unaMuestra.cantidadDeOpiniones());
+			assertEquals(1, unaMuestra.getOpiniones().size());
 
 			assertThrows(RuntimeException.class, () -> {
 				unaMuestra.agregarOpinion(opinion3Mock);
@@ -166,9 +166,9 @@ class MuestraTest {
 			unaMuestra.agregarOpinion(opinion2Mock);
 			unaMuestra.agregarOpinion(opinion3Mock);
 			
-			assertEquals(2, unaMuestra.cantidadDeOpiniones());
+			assertEquals(2, unaMuestra.getOpiniones().size());
 			assertEquals(1, unaMuestra.opinionesExpertos().size());		
-			assertNotEquals(unaMuestra.cantidadDeOpiniones(), unaMuestra.opinionesExpertos().size());
+			assertNotEquals(unaMuestra.getOpiniones().size(), unaMuestra.opinionesExpertos().size());
 	    }
 	    
 	    @Test 
