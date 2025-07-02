@@ -8,7 +8,7 @@ import ar.edu.unq.po2.Muestra.Muestra;
 
 public class BuscadorOr extends BuscadorCompuesto {
 	
-  private List<IBuscadorMuestras> buscadoresDeMuestras = new ArrayList<>();
+ private List<IBuscadorMuestras> buscadoresDeMuestras = new ArrayList<>();
 
 	   
     public void addBuscador(IBuscadorMuestras buscadorMuestras) {

@@ -7,7 +7,7 @@ import ar.edu.unq.po2.Muestra.Muestra;
 
 public class BuscadorAnd extends BuscadorCompuesto {
 	
- private List<IBuscadorMuestras> buscadoresDeMuestras = new ArrayList<>();
+	private List<IBuscadorMuestras> buscadoresDeMuestras = new ArrayList<>();
 
 	   
 	public void addBuscador(IBuscadorMuestras buscadorMuestras) {
@@ -27,4 +27,6 @@ public class BuscadorAnd extends BuscadorCompuesto {
 	            						  (resultadoParcial, buscador) -> buscador.filtrar(resultadoParcial),
 	            						  (a, b) -> b);
 	}
+
+	
 }
