@@ -12,7 +12,7 @@ import ar.edu.unq.po2.Muestra.Muestra;
 import ar.edu.unq.po2.Muestra.Opinion;
 import ar.edu.unq.po2.Usuario.Usuario;
 
-class gestorDeUsuariosTest {
+class GestorDeUsuariosTest {
 	
 	private GestorDeUsuarios gestor;
 	private Sistema sistemaMock;
