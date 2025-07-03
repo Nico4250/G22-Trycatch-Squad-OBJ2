@@ -39,7 +39,7 @@ class MuestraNoVerificadaTest {
         when(usuario2Mock.getId()).thenReturn(2);
         when(opinionMock.getUsuario()).thenReturn(usuario2Mock);
 
-        when(muestraMock.elUsuarioNoOpino(usuario2Mock)).thenReturn(true);
+        when(muestraMock.usuarioPuedeOpinar(usuario2Mock)).thenReturn(true);
         
         assertTrue(estadoNoVerificado.puedeOpinar(muestraMock, usuario2Mock));
         
@@ -57,7 +57,7 @@ class MuestraNoVerificadaTest {
         when(opinionMock.getUsuario()).thenReturn(usuarioMock);
 
         when(muestraMock.getUsuario()).thenReturn(usuario2Mock);
-        when(muestraMock.elUsuarioNoOpino(usuarioMock)).thenReturn(true);
+        when(muestraMock.usuarioPuedeOpinar(usuarioMock)).thenReturn(true);
         
         estadoNoVerificado.agregarOpinion(muestraMock, opinionMock);
         

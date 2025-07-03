@@ -29,7 +29,6 @@ class gestorDeUsuariosTest {
 	        when(usuarioMock.getId()).thenReturn(1);
 	        // Por defecto, un mock de Usuario no es experto ni especialista
 	        when(usuarioMock.esExperto()).thenReturn(false);
-	        when(usuarioMock.esEspecialista()).thenReturn(false);
 	    }
 	
 
@@ -102,7 +101,6 @@ class gestorDeUsuariosTest {
 		
 		when(usuarioMock.getId()).thenReturn(1);
 		//EL USUARIO ES ESPECIALISTA
-		when(usuarioMock.esEspecialista()).thenReturn(true);
 		when(usuarioMock.esExperto()).thenReturn(true);
 		assertTrue(usuarioMock.esExperto());
 
@@ -115,8 +113,8 @@ class gestorDeUsuariosTest {
 
 	    gestor.ActualizarNivelesDeUsuario();
 
-	    //ES LLAMADO EL METODO "PROMOVER A EXPERTO"
-	    verify(usuarioMock, times(1)).promoverAExperto();
+	    //ES LLAMADO EL METODO "DEGRADAR A BASICO PERO NO HACE CAMBIOS"
+	    verify(usuarioMock, times(1)).degradarABasico();
 
 	}
 	

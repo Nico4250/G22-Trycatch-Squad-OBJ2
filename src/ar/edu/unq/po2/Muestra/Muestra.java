@@ -81,6 +81,9 @@ public class Muestra {
 		return this.getOpiniones().stream().noneMatch(opinion -> opinion.getUsuario().getId() == usuario.getId());
 	}
 	
+	
+	
+	
 	public List<Opinion> opinionesExpertos() {
 		Stream <Opinion> opinionesExpertos = this.opiniones.stream().filter(opinion -> opinion.getUsuario().esExperto());
 		return opinionesExpertos.toList();
@@ -140,6 +143,17 @@ public class Muestra {
 	
 	public boolean puedeOpinar(Usuario usuario) {
 		return estado.puedeOpinar(this, usuario);
+	}
+
+
+	private boolean elUsuarioNoEsDueñoDeMuestra(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return this.getUsuario() != usuario;
+	}
+
+
+	public boolean usuarioPuedeOpinar(Usuario usuario) {
+		return this.elUsuarioNoOpino(usuario) && this.elUsuarioNoEsDueñoDeMuestra(usuario);
 	}
 
 

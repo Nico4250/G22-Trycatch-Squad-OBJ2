@@ -9,13 +9,11 @@ public class Usuario {
 	private int    			id;
 	private String 			nombreUsuario;
 	protected Boolean 		esExperto;
-	protected Boolean		esEspecialista;
-	
+
 	public Usuario(int id, String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
 		this.id = id;
 		this.esExperto = false;
-		this.esEspecialista = false;
 	}
 	
 	public int getId() {
@@ -39,10 +37,6 @@ public class Usuario {
 		// TODO Auto-generated method stub
 		Opinion opinion = new Opinion(this, unaOpinion);
 		unaMuestra.agregarOpinion(opinion);
-	}
-
-	public boolean esEspecialista() {
-		return esEspecialista;
 	}
 
 	public void promoverAExperto() {

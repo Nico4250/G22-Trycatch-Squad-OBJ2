@@ -38,7 +38,7 @@ public class GestorDeUsuarios {
 		long cantidadDeOpinionesDadas = opinionesEntreMuestras.stream().filter(o -> o.getUsuario().equals(u)).count();
 		//TODAS LAS OPINIONES HECHAS POR EL USUARIO EN EL SISTEMA
 		
-		return u.esEspecialista() || (cantidadDeOpinionesDadas >= 20 && cantidadDeMuestrasEnviadas >= 10);
+		return (cantidadDeOpinionesDadas >= 20 && cantidadDeMuestrasEnviadas >= 10);
 	}
 
 }

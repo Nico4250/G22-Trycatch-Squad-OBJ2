@@ -61,6 +61,7 @@ class MuestraEnVerificacionTest {
 
     	when(muestraMock.elUsuarioNoOpino(usuario2Mock)).thenReturn(true);
     	when(muestraMock.puedeOpinar(usuario2Mock)).thenReturn(true);
+    	when(muestraMock.usuarioPuedeOpinar(usuario2Mock)).thenReturn(true);
     	when(muestraMock.opinionesExpertos()).thenReturn(List.of());
 
     	

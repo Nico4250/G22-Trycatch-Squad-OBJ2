@@ -36,7 +36,7 @@ public class MuestraNoVerificada implements IEstadoMuestra{
 	@Override
 	public boolean puedeOpinar(Muestra muestra, Usuario usuario) {
 		//PUEDE OPINAR SOLO SI EL USUARIO NO OPINO AUN, Y SI NO ES EL AUTOR DE LA MUESTRA
-		return (muestra.elUsuarioNoOpino(usuario) && muestra.getUsuario() != usuario) ;
+		return muestra.usuarioPuedeOpinar(usuario) ;
 	}	
 		
 

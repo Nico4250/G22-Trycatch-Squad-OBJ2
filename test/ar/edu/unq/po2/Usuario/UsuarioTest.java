@@ -53,12 +53,6 @@ class UsuarioTest {
 		assertEquals(0, usuarioInicial.getId());
 		assertEquals("usuario0.exe", usuarioInicial.nombreUsuario());
 		assertEquals (false, usuarioInicial.esExperto());
-		assertEquals(false, usuarioInicial.esEspecialista());
-	}
-	
-	@Test 
-	void test01UnUsuarioBasicoNoEsEspecialista() {
-		assertFalse(juan.esEspecialista());
 	}
 	
 	@Test 
