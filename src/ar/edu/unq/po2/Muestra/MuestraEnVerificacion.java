@@ -68,7 +68,7 @@ public class MuestraEnVerificacion implements IEstadoMuestra {
 			 
 				if (otroExpertoEstaDeAcuerdo) {
 					muestra.cambiarEstado(new MuestraVerificada());
-					//recomparar en cambio de estado
+					muestra.getSistema().muestraFueValidada(muestra);
 				}
 	}
 

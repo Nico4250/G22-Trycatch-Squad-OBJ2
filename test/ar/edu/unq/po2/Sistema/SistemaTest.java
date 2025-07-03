@@ -9,6 +9,7 @@ import ar.edu.unq.po2.Muestra.Muestra;
 import ar.edu.unq.po2.Organizacion.Organizacion;
 import ar.edu.unq.po2.Organizacion.ZonaDeCobertura;
 import ar.edu.unq.po2.Usuario.Usuario;
+import ar.edu.unq.po2.Organizacion.Ubicacion;
 
 class SistemaTest {
 
@@ -134,6 +135,77 @@ class SistemaTest {
 	    sistema.registrarZonaDeCobertura(zonaMock);
 	    assertEquals(1, sistema.getZonasDeCobertura().size());
 	}
+	
+	@Test
+	void test09AgregarMuestraNotificaZonasDeCoberturaCercanas() {
+	    Sistema sistema = new Sistema();
 
+	    // Mock de la muestra y su ubicación
+	    Muestra muestraMock = mock(Muestra.class);
+	    Ubicacion ubicacionMuestra = mock(Ubicacion.class);
+	    when(muestraMock.getUbicacion()).thenReturn(ubicacionMuestra);
+
+	    // Mock de zona de cobertura 1 (cercana)
+	    ZonaDeCobertura zonaCercana = mock(ZonaDeCobertura.class);
+	    Ubicacion epicentroCercano = mock(Ubicacion.class);
+	    when(zonaCercana.getEpicentro()).thenReturn(epicentroCercano);
+	    when(epicentroCercano.distanciaEntre(ubicacionMuestra)).thenReturn(5.0); // dentro del radio
+	    when(zonaCercana.getRadio()).thenReturn(10);
+
+	    // Mock de zona de cobertura 2 (lejana)
+	    ZonaDeCobertura zonaLejana = mock(ZonaDeCobertura.class);
+	    Ubicacion epicentroLejano = mock(Ubicacion.class);
+	    when(zonaLejana.getEpicentro()).thenReturn(epicentroLejano);
+	    when(epicentroLejano.distanciaEntre(ubicacionMuestra)).thenReturn(20.0); // fuera del radio
+	    when(zonaLejana.getRadio()).thenReturn(10);
+
+	    // Registrar zonas
+	    sistema.registrarZonaDeCobertura(zonaCercana);
+	    sistema.registrarZonaDeCobertura(zonaLejana);
+
+	    // Agregar muestra
+	    sistema.agregarMuestra(muestraMock);
+
+	    // Verifica que solo la zona cercana fue notificada
+	    verify(zonaCercana).notificarCargaMuestra(muestraMock);
+	    verify(zonaLejana, never()).notificarCargaMuestra(muestraMock);
+	}
+	
+	@Test
+	void test10SistemaNotificaValidacionAMuestrasCercanas() {
+	    Sistema sistema = new Sistema();
+
+	    // Mocks compartidos de ubicaciones
+	    Ubicacion ubicacionMuestra = mock(Ubicacion.class);
+	    Ubicacion epicentro1 = mock(Ubicacion.class);
+	    Ubicacion epicentro2 = mock(Ubicacion.class);
+
+	    // Muestra
+	    Muestra muestraMock = mock(Muestra.class);
+	    when(muestraMock.getUbicacion()).thenReturn(ubicacionMuestra);
+
+	    // Zona 1: cercana (distancia 5 <= radio 10)
+	    ZonaDeCobertura zonaMock1 = mock(ZonaDeCobertura.class);
+	    when(zonaMock1.getEpicentro()).thenReturn(epicentro1);
+	    when(zonaMock1.getRadio()).thenReturn(10);
+	    when(epicentro1.distanciaEntre(ubicacionMuestra)).thenReturn(5.0);
+
+	    // Zona 2: lejana (distancia 20 > radio 10)
+	    ZonaDeCobertura zonaMock2 = mock(ZonaDeCobertura.class);
+	    when(zonaMock2.getEpicentro()).thenReturn(epicentro2);
+	    when(zonaMock2.getRadio()).thenReturn(10);
+	    when(epicentro2.distanciaEntre(ubicacionMuestra)).thenReturn(20.0);
+
+	    // Registrar zonas
+	    sistema.registrarZonaDeCobertura(zonaMock1);
+	    sistema.registrarZonaDeCobertura(zonaMock2);
+
+	    // Ejecutar
+	    sistema.muestraFueValidada(muestraMock);
+
+	    // Verificar
+	    verify(zonaMock1).notificarValidacionMuestra(muestraMock);
+	    verify(zonaMock2, never()).notificarValidacionMuestra(muestraMock);
+	}
 
 }

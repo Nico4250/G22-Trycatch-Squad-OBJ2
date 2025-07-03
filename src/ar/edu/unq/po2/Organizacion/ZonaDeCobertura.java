@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class ZonaDeCobertura implements ISujeto {
 	private ArrayList<IObserver> subscritosAValidacion = new ArrayList<>();
 	private ArrayList<IObserver> subscritosACarga = new ArrayList<>();
-	private ArrayList<Muestra> muestrasEnZona = new ArrayList<Muestra>();
 	
 	private String nombre;
 	private int radio;
@@ -48,9 +47,6 @@ public class ZonaDeCobertura implements ISujeto {
 		this.radio = distancia;
 	}
 	
-	public ArrayList<Muestra> getMuestrasEnZona() {
-		return muestrasEnZona;
-	}
 	public ArrayList<IObserver> getSubscritosAValidacion() {
 		return subscritosAValidacion;
 	}
@@ -79,17 +75,12 @@ public class ZonaDeCobertura implements ISujeto {
 		this.getSubscritosAValidacion().remove(organizacion);
 	}
 	
-	public void agregarMuestra(Muestra muestra) {
-		this.getMuestrasEnZona().add(muestra);
-		this.notificarCargaMuestra(muestra);
-    }
 
 	public void notificarCargaMuestra(Muestra muestra) {
 		for (IObserver organizacion : this.getSubscritosACarga()) {
 	        organizacion.actualizarPorCargaNueva(this, muestra);
 	    }
 	}
-	
 	
 	public void notificarValidacionMuestra(Muestra muestra) {
 		for (IObserver organizacion : this.getSubscritosAValidacion()) {

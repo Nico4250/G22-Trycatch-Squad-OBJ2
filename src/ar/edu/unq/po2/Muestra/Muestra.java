@@ -1,5 +1,5 @@
 package ar.edu.unq.po2.Muestra;
-import java.time.LocalDate;
+import java.time.LocalDate; 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import ar.edu.unq.po2.Organizacion.Ubicacion;
 import ar.edu.unq.po2.Usuario.Usuario;
+import ar.edu.unq.po2.Sistema.*;
 
 public class Muestra {
     private Ubicacion 			ubicacion;
@@ -17,9 +18,10 @@ public class Muestra {
     private ArrayList<Opinion> 	opiniones; 
     private IEstadoMuestra      estado;
     private String 				nombreDeFoto;
+    private Sistema             sistema;
     
     
-    public Muestra(Ubicacion ubicacion, Opinion opinion, String nombreDeFoto) {
+    public Muestra(Ubicacion ubicacion, Opinion opinion, String nombreDeFoto, Sistema sistema) {
     	this.ubicacion = ubicacion;
     	this.usuario = opinion.getUsuario();
     	this.opiniones = new ArrayList<Opinion>();
@@ -27,6 +29,7 @@ public class Muestra {
     	this.estado = (IEstadoMuestra) new MuestraNoVerificada();
     	this.fechaCreacion = LocalDate.now();
     	this.nombreDeFoto = nombreDeFoto;
+    	this.sistema = sistema;
     }
     
 	
@@ -56,6 +59,10 @@ public class Muestra {
 	
 	public String getFoto() {
 		return this.nombreDeFoto + ".JPG";
+	}
+	
+	public Sistema getSistema() {
+		return this.sistema;
 	}
 	
 	public void cambiarEstado(IEstadoMuestra nuevoEstado) {

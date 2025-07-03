@@ -1,6 +1,6 @@
 package ar.edu.unq.po2.Muestra;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*; 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ar.edu.unq.po2.Usuario.Usuario;
+import ar.edu.unq.po2.Sistema.*;
 
 class MuestraEnVerificacionTest {
 
@@ -121,6 +122,7 @@ class MuestraEnVerificacionTest {
     @Test
     void test06UnSegundoExpertoConMismaOpinionVerificaLaMuestra() {
     	ArrayList<Opinion> opiniones = new ArrayList<Opinion>();
+    	Sistema sistemaMock = mock(Sistema.class);
     	
     	 when(usuarioMock.getId()).thenReturn(1);
          when(usuarioMock.esExperto()).thenReturn(true);
@@ -131,6 +133,7 @@ class MuestraEnVerificacionTest {
          when(usuario2Mock.esExperto()).thenReturn(true);
          when(opinion2Mock.getUsuario()).thenReturn(usuario2Mock);
          when(opinion2Mock.getOpinion()).thenReturn(OpinionImagen.VINCHUCA_INFESTANS);
+         when(muestraMock.getSistema()).thenReturn(sistemaMock);
          
          opiniones.add(opinionMock);
          

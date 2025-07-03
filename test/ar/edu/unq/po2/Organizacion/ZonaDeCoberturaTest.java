@@ -60,13 +60,11 @@ public class ZonaDeCoberturaTest {
     }
 
     @Test
-    public void testAgregarMuestraYNotificaACarga() {
+    public void testNotificaACarga() {
         zona.suscribirParaCarga(obs1);
         zona.suscribirParaCarga(obs2);
+        zona.notificarCargaMuestra(muestra1);
 
-        zona.agregarMuestra(muestra1);
-
-        assertTrue(zona.getMuestrasEnZona().contains(muestra1));
         verify(obs1).actualizarPorCargaNueva(zona, muestra1);
         verify(obs2).actualizarPorCargaNueva(zona, muestra1);
     }

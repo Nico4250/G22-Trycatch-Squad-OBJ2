@@ -39,6 +39,7 @@ public class Sistema {
 	public void agregarMuestra(Muestra unaMuestra) {
 		if (!muestras.contains(unaMuestra)) {
 			muestras.add(unaMuestra);
+			this.muestraFueCargada(unaMuestra);
 		}
 	}
 	
@@ -57,6 +58,22 @@ public class Sistema {
 	public void registrarZonaDeCobertura(ZonaDeCobertura unaZona) {
 		if (!zonasDeCobertura.contains(unaZona)) {
 			zonasDeCobertura.add(unaZona);
+		}
+	}
+	
+	private void muestraFueCargada(Muestra muestra) {
+		for (ZonaDeCobertura zona : zonasDeCobertura) {
+			if (zona.getEpicentro().distanciaEntre(muestra.getUbicacion()) <= zona.getRadio()) {
+				zona.notificarCargaMuestra(muestra); //delega notificacion a la zona si la muestra es parte de la misma
+			}
+		}
+	}
+	
+	public void muestraFueValidada(Muestra muestra) {
+		for (ZonaDeCobertura zona : zonasDeCobertura) {
+			if (zona.getEpicentro().distanciaEntre(muestra.getUbicacion()) <= zona.getRadio()) {
+				zona.notificarValidacionMuestra(muestra);
+			}
 		}
 	}
 }

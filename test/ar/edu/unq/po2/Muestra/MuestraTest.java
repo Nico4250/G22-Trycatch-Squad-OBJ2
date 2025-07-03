@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ar.edu.unq.po2.Organizacion.Ubicacion;
+import ar.edu.unq.po2.Sistema.Sistema;
 import ar.edu.unq.po2.Usuario.Usuario;
 
 class MuestraTest {
@@ -22,6 +23,7 @@ class MuestraTest {
 	private Usuario usuarioMock;
 	private Usuario usuario2Mock;
 	private Usuario usuario3Mock;
+	private Sistema sistemaMock;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -32,6 +34,7 @@ class MuestraTest {
 		usuarioMock = mock(Usuario.class);	
 		usuario2Mock = mock(Usuario.class);
 		usuario3Mock = mock(Usuario.class);
+		sistemaMock = mock(Sistema.class);
 	}
 	
 	@Test 
@@ -40,7 +43,7 @@ class MuestraTest {
 	    when(opinionMock.getUsuario()).thenReturn(usuarioMock);
 	    when(opinionMock.getOpinion()).thenReturn(OpinionImagen.CHINCHE_FOLIADA);
 	    
-		unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen01");
+		unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen01", sistemaMock);
 		
 		assertEquals(ubicacionMock, unaMuestra.getUbicacion());
 		assertEquals(usuarioMock, unaMuestra.getUsuario());
@@ -48,11 +51,12 @@ class MuestraTest {
 		assertEquals(OpinionImagen.CHINCHE_FOLIADA, unaMuestra.getTipoInsecto());
 		assertEquals(0,unaMuestra.getOpiniones().size());
 		assertEquals("imagen01.JPG", unaMuestra.getFoto());
+		assertEquals(sistemaMock, unaMuestra.getSistema());
 	}
 
 	    @Test
 	    void test01UnaMuestraSeCreaComoNoVerificada() { 
-			unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen01");
+			unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen01", sistemaMock);
 			 
 			assertEquals(MuestraNoVerificada.class, unaMuestra.getEstadoMuestra().getClass());
 	    }
@@ -63,7 +67,7 @@ class MuestraTest {
 		    when(opinionMock.getUsuario()).thenReturn(usuarioMock);
 		    when(opinionMock.getOpinion()).thenReturn(OpinionImagen.VINCHUCA_SORDIDA);
 		    
-	    	unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen01");
+	    	unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen01", sistemaMock);
 	    	
 	    	 assertEquals(OpinionImagen.VINCHUCA_SORDIDA, unaMuestra.getTipoInsecto());
 	    	
@@ -74,7 +78,7 @@ class MuestraTest {
 			when(usuarioMock.getId()).thenReturn(1);
 			when(opinionMock.getUsuario()).thenReturn(usuarioMock);
 			
-			unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen02");
+			unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen02", sistemaMock);
 			
 			when(opinion2Mock.getUsuario()).thenReturn(usuarioMock);
 			
@@ -91,7 +95,7 @@ class MuestraTest {
 			when(usuarioMock.getId()).thenReturn(1);
 			when(opinionMock.getUsuario()).thenReturn(usuarioMock);
 			
-			unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen03");
+			unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen03", sistemaMock);
 			
 			when(usuario2Mock.getId()).thenReturn(2);
 			when(opinion2Mock.getUsuario()).thenReturn(usuario2Mock);
@@ -112,7 +116,7 @@ class MuestraTest {
 		    when(opinionMock.getUsuario()).thenReturn(usuarioMock);
 		    when(opinionMock.getOpinion()).thenReturn(OpinionImagen.VINCHUCA_INFESTANS);
 		    
-	    	unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen04");
+	    	unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen04", sistemaMock);
 	    	
 	    	when(usuario2Mock.getId()).thenReturn(2);
 		    when(opinion2Mock.getUsuario()).thenReturn(usuario2Mock);
@@ -134,7 +138,7 @@ class MuestraTest {
 			when(opinionMock.getUsuario()).thenReturn(usuarioMock);
 			when(opinionMock.getOpinion()).thenReturn(OpinionImagen.VINCHUCA_GUASAYANA);
 			    
-		    unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen05");
+		    unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen05", sistemaMock);
 		    	
 		    when(usuario2Mock.getId()).thenReturn(2);
 		    when(opinion2Mock.getUsuario()).thenReturn(usuario2Mock);
@@ -152,7 +156,7 @@ class MuestraTest {
 	    
 	    @Test
 	    void test07MuestraSeparaOpinionesGeneralesDeOpinionesDeExpertos() {
-	    	unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen06");
+	    	unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen06", sistemaMock);
 	    	
 		    when(usuario2Mock.getId()).thenReturn(2);
 		    when(opinion2Mock.getUsuario()).thenReturn(usuario2Mock);
@@ -173,7 +177,7 @@ class MuestraTest {
 	    
 	    @Test 
 	    void test08MuestraDelegaElPermisoParaOpinarAlEstado() {
-	    	unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen07");
+	    	unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen07", sistemaMock);
 	    	
 	    	//HARDCODEAREMOS UN ESTADO PARA COMPROBAR SI SE LLAMA A SUS METODOS
 	    	IEstadoMuestra estadoMock = mock(IEstadoMuestra.class);
@@ -190,7 +194,7 @@ class MuestraTest {
 	    void test09UnaMuestraDelegaElCambioDeEstadoASuEstadoActual() {
 			when(usuarioMock.getId()).thenReturn(1);
 			when(opinionMock.getUsuario()).thenReturn(usuarioMock);
-			unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen08");
+			unaMuestra = new Muestra(ubicacionMock, opinionMock, "imagen08", sistemaMock);
 			
 			//LA MUESTRA EN ESTA INSTANCIA NO ESTABA VERIFICADA
 			assertEquals(MuestraNoVerificada.class, unaMuestra.getEstadoMuestra().getClass());
